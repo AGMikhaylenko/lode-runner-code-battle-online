@@ -1,11 +1,18 @@
 
-F
-java:S1068
-")Remove this unused "board" private field.(Ô¿óÓ8µ¢Ú‡/
-U	java:S106D"9Replace this use of System.out or System.err by a logger.(ï¤¥¤8µ¢Ú‡/
-Z	java:S106E"9Replace this use of System.out or System.err by a logger.(î¤¾Şûÿÿÿÿ8µ¢Ú‡/
-Z	java:S106F"9Replace this use of System.out or System.err by a logger.(‘ê”Êüÿÿÿÿ8µ¢Ú‡/
-K
-java:S1068")Remove this unused "ticks" private field.(ÜÈ’¡üÿÿÿÿ8µ¢Ú‡/
-Z	java:S106C"9Replace this use of System.out or System.err by a logger.(¬»Ìæúÿÿÿÿ8µ¢Ú‡/
-Z	java:S106G"9Replace this use of System.out or System.err by a logger.(Ó‚ÿíúÿÿÿÿ8µ¢Ú‡/
+I
+java:S14815",Remove this unused "gPortal" local variable.(ğÌ¸8ñ±œ/
+O
+java:S1068"2Remove this unused "pitLeftActions" private field.(à¬„Æ8 ¾Ñª/
+Z	java:S106a"9Replace this use of System.out or System.err by a logger.(ñ¥¿îüÿÿÿÿ8”‘™/
+Z	java:S106^"9Replace this use of System.out or System.err by a logger.(¬»Ìæúÿÿÿÿ8¡Ô„œ/
+Z	java:S106c"9Replace this use of System.out or System.err by a logger.(ÚÊ¨àùÿÿÿÿ8”‘™/
+U	java:S106b"9Replace this use of System.out or System.err by a logger.(ëş«¦8”‘™/
+U
+java:S1068"3Remove this unused "pitRightActions" private field.(ûêİøÿÿÿÿ8 ¾Ñª/
+X
+java:S18545";Remove this useless assignment to local variable "gPortal".(ğÌ¸8ñ±œ/
+Z	java:S106d"9Replace this use of System.out or System.err by a logger.(²ßÍËúÿÿÿÿ8¨–¦/
+U	java:S106_"9Replace this use of System.out or System.err by a logger.(ï¤¥¤8”‘™/
+Z	java:S106`"9Replace this use of System.out or System.err by a logger.(ŸÓÓ¦şÿÿÿÿ8”‘™/
+Q
+java:S1068"/Remove this unused "pitLeftStep" private field.(•Ğ“÷ıÿÿÿÿ8 ¾Ñª/

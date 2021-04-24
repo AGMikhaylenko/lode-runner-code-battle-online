@@ -1,19 +1,42 @@
 
-v
-java:S22937"YReplace the type specification in this constructor call with the diamond operator ("<>").(µä™«8Ü·ú„/
+“
+java:S1319á"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(´Â” øÿÿÿÿ8ŸœŸ¤/
 :
-java:S2386"Make this member "protected".(èÂŞ²8›„’í/
-o
-java:S3776+"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(šì¥8Ü·ú„/
-:
-java:S2386"Make this member "protected".(úüú8Ù‰Ø/
-_
-java:S1126»"AReplace this if-then-else statement by a single return statement.(ôÀé¡8­ºš‡/
+java:S2386!"Make this member "protected".(Ìœªİ8ÅĞÄ›/
+p
+java:S3776›"RRefactor this method to reduce its Cognitive Complexity from 59 to the 15 allowed.(®’Öı8ŸœŸ¤/
+Y	java:S125£"<This block of commented-out lines of code should be removed.(‡ı² 8ŸœŸ¤/
+
+java:S1319ô"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(×ÊáÒ8ûÊò¤/
+“
+java:S1319œ"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Æİæ˜şÿÿÿÿ8Ø±„¥/
+“
+java:S1319‰"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(•†”‚øÿÿÿÿ8ûÊò¤/
 ?
 java:S2386"Make this member "protected".(ÕëÅĞúÿÿÿÿ8²Ãå„/
-p
-java:S3776€"RRefactor this method to reduce its Cognitive Complexity from 55 to the 15 allowed.(Õ‡ÀÛ8Ü·ú„/
-?
-java:S2386"Make this member "protected".(ùª¤üÿÿÿÿ8•¿ı„/
+v
+java:S2293M"YReplace the type specification in this constructor call with the diamond operator ("<>").(µä™«8Ü·ú„/
+|
+java:S2293İ"YReplace the type specification in this constructor call with the diamond operator ("<>").( ØÎìüÿÿÿÿ8ûÊò¤/
 ?
 java:S2386"Make this member "protected".(“Àé¯ıÿÿÿÿ8Øçœí/
+t
+java:S3776C"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(’î÷µüÿÿÿÿ8Ü·ú„/
+:
+java:S2386"Make this member "protected".(úüú8Ù‰Ø/
+V	java:S106÷"9Replace this use of System.out or System.err by a logger.(ä–øÔ8ûÊò¤/
+:
+java:S2386"Make this member "protected".(ûº±¡8¹õæ›/
+:
+java:S2386"Make this member "protected".(èÂŞ²8›„’í/
+L
+java:S1481Œ".Remove this unused "nextPoint" local variable.(İëù8ÀÀª/
+u
+java:S3776Ò"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(ñÓƒıÿÿÿÿ8ûÊò¤/
+D
+java:S1172Ò"&Remove these unused method parameters.(ñù›ï8ŸœŸ¤/
+W	java:S125Ó"<This block of commented-out lines of code should be removed.(º¤J8ŸœŸ¤/
+[
+java:S1854Œ"=Remove this useless assignment to local variable "nextPoint".(İëù8«Á¿ª/
+?
+java:S2386"Make this member "protected".(ùª¤üÿÿÿÿ8•¿ı„/

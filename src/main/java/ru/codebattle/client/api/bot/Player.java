@@ -2,24 +2,15 @@ package ru.codebattle.client.api.bot;
 
 import ru.codebattle.client.api.BoardElement;
 
-public class Player {
-    private int xPosition;
-    private int yPosition;
-    private boolean isShadow;
+public class Player extends Hero{
     private int actToShadow;
-    private Bullion[] series = Bullion.values();
     private BoardElement currentElement;
-
-    private final int MAX_ACTION_OF_PILL = 50;
+    private final int MAX_ACTION_OF_PILL = 60;
 
     public Player(int xPosition, int yPosition) {
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
-        isShadow = false;
+        super(xPosition, yPosition);
         actToShadow = 0;
-        currentElement = BoardElement.NONE;
-        for (Bullion b : series)
-            b.resetSeries();
+        currentElement = BoardElement.HERO_DIE;
     }
 
     public void updatePosition(int x, int y) {
@@ -27,21 +18,21 @@ public class Player {
         this.yPosition = y;
     }
 
-    public void update(BoardElement newElement) {
+    public void update(BoardElement nextElement) {
         if (--actToShadow < 0) {
             isShadow = false;
             actToShadow = 0;
         }
 
-        switch (newElement) {
+        switch (nextElement) {
             case GREEN_GOLD:
-                series[0].enlargeSeries();
+                Bullion.GREEN.enlargeSeries();
                 break;
             case YELLOW_GOLD:
-                series[1].enlargeSeries();
+                Bullion.YELLOW.enlargeSeries();
                 break;
             case RED_GOLD:
-                series[2].enlargeSeries();
+                Bullion.RED.enlargeSeries();
                 break;
             case SHADOW_PILL:
                 actToShadow = MAX_ACTION_OF_PILL;
@@ -49,7 +40,7 @@ public class Player {
                 break;
         }
 
-        currentElement = newElement;
+        currentElement = nextElement;
     }
 
     public int getXPosition() {
@@ -64,7 +55,4 @@ public class Player {
         return currentElement;
     }
 
-    public Bullion[] getSeries() {
-        return series;
-    }
 }

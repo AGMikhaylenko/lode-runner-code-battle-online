@@ -36,7 +36,10 @@ public class Main {
 
         lastBoard = gameBoard.getBoardString();
 
+        long millis = System.currentTimeMillis();
+        LoderunnerAction answer = mySolution.getNextStepTwo(gameBoard);
+        System.out.println("Time = " + (System.currentTimeMillis() - millis));
 
-        return mySolution.getNextStep(gameBoard);
+        return answer;
     }
 }

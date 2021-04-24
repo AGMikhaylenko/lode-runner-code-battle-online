@@ -8,8 +8,10 @@ import java.util.List;
 
 public class GameBoard {
 
-    @Getter
-    private final String boardString;
+//    @Getter
+//    private final String boardString;
+
+    private String boardString;
 
     public GameBoard(String boardString) {
         this.boardString = boardString.replace("\n", "");
@@ -17,6 +19,17 @@ public class GameBoard {
 
     public int size() {
         return (int) Math.sqrt(boardString.length());
+    }
+
+    /**
+     * Замена символа игрока на символ "под ним"
+     * @param element Элемент, находящийся "под игроком"
+     */
+    public void replaceElementInMyPosition(BoardElement element) {
+        StringBuilder sb = new StringBuilder(boardString);
+        sb.replace(getShiftByPoint(getMyPosition()), getShiftByPoint(getMyPosition()) + 1,
+                String.valueOf(element.getSymbol()));
+        boardString = sb.toString();
     }
 
     public BoardPoint getMyPosition() {
@@ -56,6 +69,17 @@ public class GameBoard {
 
     public BoardElement getElementAt(BoardPoint point) {
         return BoardElement.valueOf(boardString.charAt(getShiftByPoint(point)));
+    }
+
+    /**
+     * Запрос элемента по его координатам
+     *
+     * @param x Х координата точки
+     * @param y Y координата точки
+     * @return Игровой элемент, находящийся в точке с заданными координатами
+     */
+    public BoardElement getElementAt(int x, int y) {
+        return getElementAt(new BoardPoint(x, y));
     }
 
     public void printBoard() {
@@ -266,5 +290,9 @@ public class GameBoard {
                 return true;
         }
         return false;
+    }
+
+    public String getBoardString() {
+        return boardString;
     }
 }

@@ -31,3 +31,5 @@ i
 Lsrc/main/java/ru/codebattle/client/ReconnectableLodeRunnerClientWrapper.java,d\8\d8c54d7594c9cf1fb476c30ac76450d36dac3b25
 k
 ;src/main/java/ru/codebattle/client/api/bot/NodeOfBoard.java,6\d\6de9dde8f063976dabaa2fb3d5b4371ad4e4997b
+d
+4src/main/java/ru/codebattle/client/api/bot/Hero.java,0\7\07a802412ed1c3ea974dc8dd760781561fef0af8

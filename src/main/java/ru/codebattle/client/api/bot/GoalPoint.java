@@ -2,8 +2,6 @@ package ru.codebattle.client.api.bot;
 
 import ru.codebattle.client.api.BoardPoint;
 
-import java.awt.*;
-
 public class GoalPoint {
     private BoardPoint GoalPoint;
     private int distance;

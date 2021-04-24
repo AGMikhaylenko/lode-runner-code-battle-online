@@ -1,9 +1,10 @@
 
+U	java:S106)"9Replace this use of System.out or System.err by a logger.(‚Éç¾8ê†´/
+d
+java:S1128"BRemove this unused import 'ru.codebattle.client.api.BoardElement'.(Œéğéûÿÿÿÿ8¿ÿÈ…/
+U	java:S106""9Replace this use of System.out or System.err by a logger.(‰Í†8¬Õà†/
 O
 java:S1128
 "-Remove this unused import 'java.util.Random'.(èøÉ›ùÿÿÿÿ8‘‰Ô/
 S
 java:S1128	"8Remove this unused import 'java.net.URISyntaxException'.(Ä®íÿÿÿÿÿ
-d
-java:S1128"BRemove this unused import 'ru.codebattle.client.api.BoardElement'.(Œéğéûÿÿÿÿ8¿ÿÈ…/
-U	java:S106""9Replace this use of System.out or System.err by a logger.(‰Í†8¬Õà†/

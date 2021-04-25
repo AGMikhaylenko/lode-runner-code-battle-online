@@ -26,7 +26,7 @@ public class Main {
     }
 
     private static LoderunnerAction doAction(GameBoard gameBoard) {
-        if (lastBoard != null && lastBoard.equals(gameBoard.getBoardString()))
+        if (lastBoard != null && lastBoard.equals(gameBoard.getBoardString()) || gameBoard.isGameOver())
             mySolution = null;
 
         if (mySolution == null) {

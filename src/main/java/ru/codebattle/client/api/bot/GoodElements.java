@@ -2,11 +2,11 @@ package ru.codebattle.client.api.bot;
 
 import ru.codebattle.client.api.BoardElement;
 
-public enum Bullion {
+public enum GoodElements {
     GREEN(0, 1, BoardElement.GREEN_GOLD),
     YELLOW(0, 2, BoardElement.YELLOW_GOLD),
     RED(0, 5, BoardElement.RED_GOLD),
-    PILL_SHADOW(0, 20, BoardElement.SHADOW_PILL) {
+    PILL_SHADOW(0, 5, BoardElement.SHADOW_PILL) {
         @Override
         public void enlargeSeries() {
             //Nothing
@@ -23,7 +23,7 @@ public enum Bullion {
     private int value;
     private BoardElement boardElement;
 
-    Bullion(int series, int value, BoardElement boardElement) {
+    GoodElements(int series, int value, BoardElement boardElement) {
         this.series = series;
         this.value = value;
         this.boardElement = boardElement;

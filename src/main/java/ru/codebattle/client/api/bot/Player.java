@@ -5,7 +5,7 @@ import ru.codebattle.client.api.BoardElement;
 public class Player extends Hero{
     private int actToShadow;
     private BoardElement currentElement;
-    private final int MAX_ACTION_OF_PILL = 60;
+    private final int MAX_ACTION_OF_PILL = 30;
 
     public Player(int xPosition, int yPosition) {
         super(xPosition, yPosition);
@@ -26,13 +26,13 @@ public class Player extends Hero{
 
         switch (nextElement) {
             case GREEN_GOLD:
-                Bullion.GREEN.enlargeSeries();
+                GoodElements.GREEN.enlargeSeries();
                 break;
             case YELLOW_GOLD:
-                Bullion.YELLOW.enlargeSeries();
+                GoodElements.YELLOW.enlargeSeries();
                 break;
             case RED_GOLD:
-                Bullion.RED.enlargeSeries();
+                GoodElements.RED.enlargeSeries();
                 break;
             case SHADOW_PILL:
                 actToShadow = MAX_ACTION_OF_PILL;
@@ -55,4 +55,7 @@ public class Player extends Hero{
         return currentElement;
     }
 
+    public int getActToShadow() {
+        return actToShadow;
+    }
 }

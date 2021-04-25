@@ -8,10 +8,9 @@ import java.util.List;
 
 public class GameBoard {
 
-//    @Getter
-//    private final String boardString;
+    @Getter
+    private final String boardString;
 
-    private String boardString;
 
     public GameBoard(String boardString) {
         this.boardString = boardString.replace("\n", "");
@@ -19,17 +18,6 @@ public class GameBoard {
 
     public int size() {
         return (int) Math.sqrt(boardString.length());
-    }
-
-    /**
-     * Замена символа игрока на символ "под ним"
-     * @param element Элемент, находящийся "под игроком"
-     */
-    public void replaceElementInMyPosition(BoardElement element) {
-        StringBuilder sb = new StringBuilder(boardString);
-        sb.replace(getShiftByPoint(getMyPosition()), getShiftByPoint(getMyPosition()) + 1,
-                String.valueOf(element.getSymbol()));
-        boardString = sb.toString();
     }
 
     public BoardPoint getMyPosition() {
@@ -285,14 +273,13 @@ public class GameBoard {
 
     //========My code
     public boolean isAt(int x, int y, BoardElement... elements) {
-        for (BoardElement el : elements) {
-            if (el.equals(getElementAt(new BoardPoint(x, y))))
-                return true;
-        }
-        return false;
+        return isAt(new BoardPoint(x, y), elements);
     }
 
-    public String getBoardString() {
-        return boardString;
+    public boolean isAt(BoardPoint point, BoardElement... elements) {
+        for (BoardElement el : elements)
+            if (el.equals((getElementAt(point))))
+                return true;
+        return false;
     }
 }

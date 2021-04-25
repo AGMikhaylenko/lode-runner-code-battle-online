@@ -2,19 +2,21 @@ package ru.codebattle.client.api.bot;
 
 import ru.codebattle.client.api.BoardPoint;
 
-public class GoalPoint {
-    private BoardPoint GoalPoint;
+public class Goal {
+    private BoardPoint goalPoint;
     private int distance;
     private Direction firstStepToGoal;
+    private BoardPoint secondPointInWay;
 
-    public GoalPoint(BoardPoint goalPoint, int distance, Direction firstStepToGoal) {
-        GoalPoint = goalPoint;
+    public Goal(BoardPoint goalPoint, int distance, Direction firstStepToGoal, BoardPoint secondPointInWay) {
+        this.goalPoint = goalPoint;
         this.distance = distance;
         this.firstStepToGoal = firstStepToGoal;
+        this.secondPointInWay = secondPointInWay;
     }
 
     public BoardPoint getGoalPoint() {
-        return GoalPoint;
+        return goalPoint;
     }
 
     public int getDistance() {
@@ -23,5 +25,9 @@ public class GoalPoint {
 
     public Direction getFirstStepToGoal() {
         return firstStepToGoal;
+    }
+
+    public BoardPoint getSecondPointInWay() {
+        return secondPointInWay;
     }
 }

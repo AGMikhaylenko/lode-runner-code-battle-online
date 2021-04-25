@@ -2,6 +2,9 @@ package ru.codebattle.client.api.bot;
 
 import ru.codebattle.client.api.BoardElement;
 
+/**
+ * Перечисление, содержащее описание "полезных" элементов на игровой доске
+ */
 public enum GoodElements {
     GREEN(0, 1, BoardElement.GREEN_GOLD),
     YELLOW(0, 2, BoardElement.YELLOW_GOLD),
@@ -19,8 +22,8 @@ public enum GoodElements {
         }
     };
 
-    private int series;
-    private int value;
+    private int series;//Серия соответствующего элемента
+    private int value;//Значение. Для золота - соответствующие очки, для таблетки тени - константа
     private BoardElement boardElement;
 
     GoodElements(int series, int value, BoardElement boardElement) {

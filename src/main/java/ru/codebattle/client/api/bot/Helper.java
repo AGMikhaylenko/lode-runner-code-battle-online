@@ -8,7 +8,11 @@ import ru.codebattle.client.api.LoderunnerAction;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Вспомогательный класс, описывающий алгоритмы для класса Solution
+ */
 public class Helper {
+
     public static final BoardElement[] GOLDS = {BoardElement.GREEN_GOLD, BoardElement.YELLOW_GOLD, BoardElement.RED_GOLD};
     public static final BoardElement[] NO_FUNDAMENT = {BoardElement.NONE, BoardElement.PIPE, BoardElement.RED_GOLD,
             BoardElement.YELLOW_GOLD, BoardElement.GREEN_GOLD, BoardElement.SHADOW_PILL, BoardElement.PORTAL};
@@ -37,12 +41,12 @@ public class Helper {
             BoardElement.OTHER_HERO_SHADOW_PIPE_RIGHT};
 
 
-    private GameBoard board;
-    private int size;
-    private NodeOfBoard[][] nodes;
+    private GameBoard board;//Игровое поле
+    private int size; //Размер поля
+    private NodeOfBoard[][] nodes; //Список узлов
 
-    private final int[] dx = {1, -1, 0, 0};
-    private final int[] dy = {0, 0, 1, -1};
+    private final int[] dx = {1, -1, 0, 0};//Вспомогательный массив
+    private final int[] dy = {0, 0, 1, -1};//Вспомогательный массив
 
     public Helper(GameBoard board, Player player) {
         this.board = board;
@@ -62,6 +66,14 @@ public class Helper {
     }
 
 
+    /**
+     * Получение кратчайшего полезного пути от героя до эдементов
+     * Поиск осуществляется при помощи волнового алгоритма
+     *
+     * @param hero Герой, от которого считается путь
+     * @param elements необходимый элемент
+     * @return Путь до элемента. Если пути нет, дистанция равна 0
+     */
     public Goal getNearestElement(Hero hero, BoardElement... elements) {
         int[][] cells = new int[board.size()][board.size()];
         for (int[] row : cells)
@@ -76,6 +88,7 @@ public class Helper {
         Direction direction = Direction.RIGHT;
         BoardPoint secondPointInWay = new BoardPoint(0, 0);
 
+        //Волновой алгоритм
         while (!queue.isEmpty() && distance == 0) {
             NodeOfBoard temp = queue.remove(0);
             for (BoardPoint bp : temp.getNeighbours()) {
@@ -84,15 +97,13 @@ public class Helper {
                     queue.add(nodes[bp.getX()][bp.getY()]);
                 }
                 if (board.isAt(bp.getX(), bp.getY(), elements)) {
-//                            && cells[bp.getX()][bp.getY()] < smallestDistanceOtherToPoint(bp.getX(), bp.getY(),
-//                                    getOtherHeroes(bp.getX(), bp.getY(), 10), elements)) {
                     distance = cells[bp.getX()][bp.getY()];
                     endNode = nodes[bp.getX()][bp.getY()];
                     break;
                 }
             }
         }
-
+        //Если элемент найден, строим обратный путь
         if (distance != 0) {
             BoardPoint temp = endNode.getPoint();
             while (temp.getX() != hero.getXPosition() || temp.getY() != hero.getYPosition()) {
@@ -102,7 +113,7 @@ public class Helper {
                     if (cells[xTemp][yTemp] - cells[temp.getX()][temp.getY()] == -1 && nodes[xTemp][yTemp] != null &&
                             nodes[xTemp][yTemp].getNeighbours().contains(nodes[temp.getX()][temp.getY()].getPoint())) {
                         if (cells[xTemp][yTemp] == 2)
-                            secondPointInWay = new BoardPoint(xTemp, yTemp);
+                            secondPointInWay = new BoardPoint(xTemp, yTemp);//Запоминаем значение второй точки на пути
                         cells[temp.getX()][temp.getY()] = Integer.MAX_VALUE;
                         temp = nodes[xTemp][yTemp].getPoint();
                         break;
@@ -111,7 +122,7 @@ public class Helper {
             }
             for (int i = 0; i < dx.length; i++) {
                 if (cells[hero.getXPosition() + dx[i]][hero.getYPosition() + dy[i]] == Integer.MAX_VALUE) {
-                    direction = Direction.values()[i];
+                    direction = Direction.values()[i];//Выбираем направление первого шага
                     break;
                 }
             }
@@ -120,26 +131,23 @@ public class Helper {
 
     }
 
-    public LoderunnerAction wherePit(int x, int y) {
-        if (board.isAt(x + 1, y + 1, BoardElement.BRICK) && board.isAt(x + 1, y, BoardElement.NONE))
-            return LoderunnerAction.DRILL_RIGHT;
-        if (board.isAt(x - 1, y + 1, BoardElement.BRICK) && board.isAt(x - 1, y, BoardElement.NONE))
-            return LoderunnerAction.DRILL_LEFT;
-        return LoderunnerAction.DO_NOTHING;
-    }
-
-
+    /**
+     * Получение массива узлов, через которые можно пройти
+     * @param player игрок
+     */
     public void getMatrixOfNodes(Player player) {
         nodes = new NodeOfBoard[size][size];
-
+        //перебор всех точек на поле
         for (int x = 0; x < nodes.length; x++)
             for (int y = 0; y < nodes.length; y++) {
+                //Если в точку можно зайти
                 if (board.isAt(x, y, FREE) || board.isAt(x, y, FREE_WITH_SHADOW) && player.isShadow() ||
                         board.isAt(x, y, GOLDS) || isGoodWall(x, y, player)
                         || x == player.getXPosition() && y == player.getYPosition()) {
                     BoardPoint bp = new BoardPoint(x, y);
                     BoardElement el = x == player.getXPosition() && y == player.getYPosition() ? player.getCurrentElement() :
                             board.getElementAt(bp);
+                    //Выбор направления движения, в которые можно пйоти из точки
                     boolean[] doMove;
                     switch (el) {
                         //Right, left, down, up
@@ -168,8 +176,9 @@ public class Helper {
                             else
                                 doMove = new boolean[]{true, true, true, false};
                     }
-
+                    //Поиск всех соседей
                     ArrayList<BoardPoint> neighbours = new ArrayList<>();
+                    //У портала нет соседних точек
                     if (!board.isAt(x, y, BoardElement.PORTAL)) {
                         for (int i = 0; i < dx.length; i++) {
                             if (doMove[i] &&
@@ -186,19 +195,25 @@ public class Helper {
             }
     }
 
+    /**
+     * Проверка: является ли точка на поле пригодной для сверления
+     * @param x Х координата точки
+     * @param y Y координата точки
+     * @param player Игрок
+     * @return Результат проверки
+     */
     private boolean isGoodWall(int x, int y, Player player) {
-        if (board.isAt(x, y, BoardElement.BRICK) &&
-                (board.isAt(x, y + 1, FREE) || player.isShadow() && board.isAt(x, y + 1, FREE_WITH_SHADOW) ||
-                        board.isAt(x, y + 1, GOLDS)) && !board.isAt(x, y + 1, BoardElement.PORTAL) && //Если клетка - стена и под ней есть пространство
+        if (board.isAt(x, y, BoardElement.BRICK) &&//Если элемент в точке - стена
+                (board.isAt(x, y + 1, FREE) || player.isShadow() && board.isAt(x, y + 1, FREE_WITH_SHADOW) || //И под ней есть свободное пространство
+                        board.isAt(x, y + 1, GOLDS)) && !board.isAt(x, y + 1, BoardElement.PORTAL) && //И под ней не портал
 
-                (board.isAt(x, y - 1, BoardElement.NONE) || board.isAt(x, y - 1, BoardElement.PIPE) &&
+                (board.isAt(x, y - 1, BoardElement.NONE) || board.isAt(x, y - 1, BoardElement.PIPE) &&//Над точкой труба или пустота
 
-                        (!board.isAt(x - 1, y, NO_FUNDAMENT) && (board.isAt(x - 1, y - 1, FREE) ||
+                        (!board.isAt(x - 1, y, NO_FUNDAMENT) && (board.isAt(x - 1, y - 1, FREE) ||//Слева по диагонали можно свелить
                                 player.isShadow() && board.isAt(x - 1, y - 1, FREE_WITH_SHADOW) ||
                                 x - 1 == player.getXPosition() && y - 1 == player.getYPosition())
-
-
-                                || !board.isAt(x + 1, y, NO_FUNDAMENT) && (board.isAt(x + 1, y - 1, FREE) ||
+                                //Или
+                                || !board.isAt(x + 1, y, NO_FUNDAMENT) && (board.isAt(x + 1, y - 1, FREE) ||//Справа по диагонали можно свелить
                                 player.isShadow() && board.isAt(x + 1, y - 1, FREE_WITH_SHADOW) ||
                                 x + 1 == player.getXPosition() && y - 1 == player.getYPosition()))))
             return true;
@@ -207,7 +222,7 @@ public class Helper {
     }
 
     /**
-     * Получение списка соперников на карте
+     * Получение списка всех соперников на карте
      *
      * @return Список соперников
      */
@@ -247,7 +262,7 @@ public class Helper {
     }
 
     /**
-     * Получение списка соперников на карте в пределах заданного радиуса от точки
+     * Получение списка соперников с тенью на карте в пределах заданного радиуса от точки
      *
      * @param xPoint Х координата точки
      * @param yPoint Y координата точки
@@ -272,7 +287,7 @@ public class Helper {
 
 
     /**
-     * Получение списка координат охотников
+     * Получение списка координат всех охотников
      *
      * @return Список координат охотников
      */
@@ -368,11 +383,32 @@ public class Helper {
         return true;
     }
 
+    /**
+     * Проверка наличия охотников и игроком под тенью в радиусе двух клеток
+     * @param player Игрок
+     * @return Результат проверки
+     */
     public boolean enemyIsNearby(Player player) {
         if (getHunters(player.getXPosition(), player.getYPosition(), 2).size() != 0 ||
                 getOtherShadowHeroes(player.getXPosition(), player.getYPosition(), 2).size() != 0)
             return true;
         else
             return false;
+    }
+
+    /**
+     * Расчет действия, необходимый для сверления стены около точки
+     * Используется в безвыходной ситуации
+     *
+     * @param x Х координата точки на поле
+     * @param y Y координата точки на поле
+     * @return Действия для сверления стены
+     */
+    public LoderunnerAction wherePit(int x, int y) {
+        if (board.isAt(x + 1, y + 1, BoardElement.BRICK) && board.isAt(x + 1, y, BoardElement.NONE))
+            return LoderunnerAction.DRILL_RIGHT;
+        if (board.isAt(x - 1, y + 1, BoardElement.BRICK) && board.isAt(x - 1, y, BoardElement.NONE))
+            return LoderunnerAction.DRILL_LEFT;
+        return LoderunnerAction.DO_NOTHING;
     }
 }

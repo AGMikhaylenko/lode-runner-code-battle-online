@@ -25,6 +25,7 @@ public class LodeRunnerClient extends LoderunnerBase {
 
     @Override
     protected String doMove(GameBoard gameBoard) {
+        //Точка входа в реализацию бота в Main.class doAction()
         clearScreen();
         gameBoard.printBoard();
         Random random = new Random(System.currentTimeMillis());

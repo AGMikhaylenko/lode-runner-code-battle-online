@@ -2,10 +2,14 @@ package ru.codebattle.client.api.bot;
 
 import ru.codebattle.client.api.BoardElement;
 
+/**
+ * Класс, описывающий игрока на игровом поле
+ */
 public class Player extends Hero{
-    private int actToShadow;
-    private BoardElement currentElement;
-    private final int MAX_ACTION_OF_PILL = 30;
+    private int actToShadow; //Остаток действия таблетки тени
+    private BoardElement currentElement; //Элемент, находящийся "под игроком"
+
+    private final int MAX_ACTION_OF_PILL = 30; //Максимальное значение действия таблетки тени
 
     public Player(int xPosition, int yPosition) {
         super(xPosition, yPosition);
@@ -18,8 +22,12 @@ public class Player extends Hero{
         this.yPosition = y;
     }
 
+    /**
+     * Обновление значений полей
+     * @param nextElement Элемент, находящийся первым по направлению движения
+     */
     public void update(BoardElement nextElement) {
-        if (--actToShadow < 0) {
+        if (--actToShadow <= 0) {
             isShadow = false;
             actToShadow = 0;
         }

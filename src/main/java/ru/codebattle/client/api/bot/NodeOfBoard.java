@@ -5,10 +5,13 @@ import ru.codebattle.client.api.BoardPoint;
 
 import java.util.ArrayList;
 
+/**
+ * Класс, описывающий узел на игровом поле
+ */
 public class NodeOfBoard {
-    private BoardPoint point;
-    private ArrayList<BoardPoint> neighbours;//Список соседей
-    private BoardElement element;
+    private BoardPoint point;//Точка на игровом поле
+    private ArrayList<BoardPoint> neighbours;//Список соседних точек, в которые можно попасть
+    private BoardElement element;//Элемент в данной точке
 
     public NodeOfBoard(BoardPoint point, ArrayList<BoardPoint> neighbours, BoardElement element) {
         this.point = point;

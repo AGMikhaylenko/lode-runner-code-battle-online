@@ -2,10 +2,13 @@ package ru.codebattle.client.api.bot;
 
 import ru.codebattle.client.api.BoardElement;
 
+/**
+ * Класс, описывающий любого игрока на игровом поле
+ */
 public class Hero {
     protected int xPosition;
     protected int yPosition;
-    protected boolean isShadow;
+    protected boolean isShadow; //Является ли игрок тенью
 
     public Hero(int xPosition, int yPosition) {
         this.xPosition = xPosition;

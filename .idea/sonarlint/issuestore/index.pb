@@ -11,8 +11,6 @@ f
 6src/main/java/ru/codebattle/client/api/bot/Helper.java,0\f\0feb1517e1b51e3c06347921421aecb5b74fd01c
 f
 6src/main/java/ru/codebattle/client/api/bot/Player.java,6\e\6e0aa35bae318addbd1e915aadeb97c36e4494bf
-g
-7src/main/java/ru/codebattle/client/api/bot/Bullion.java,c\2\c2033fdf8c1705788ae8afc7110dccd8e795d94b
 e
 5src/main/java/ru/codebattle/client/api/GameBoard.java,5\5\5510f970147863ac89cc5861cd5508ff47941379
 h
@@ -25,8 +23,6 @@ h
 8src/main/java/ru/codebattle/client/api/BoardElement.java,0\d\0d6de8e2df1c6ae348918d13ec12c48bcdb4310b
 i
 9src/main/java/ru/codebattle/client/api/bot/Direction.java,d\c\dc5568540e3b54a820aa836ac865b0b44dd776c4
-i
-9src/main/java/ru/codebattle/client/api/bot/GoalPoint.java,e\5\e56ef1a0696bf05ea536ddcd58a5ea28ac4532f6
 |
 Lsrc/main/java/ru/codebattle/client/ReconnectableLodeRunnerClientWrapper.java,d\8\d8c54d7594c9cf1fb476c30ac76450d36dac3b25
 k
